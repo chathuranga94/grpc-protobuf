@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+// option csharp_namespace = "dotnet_server";
+
+package AuthorService; // FIXME: Author?
+
+message Author {
+  string name = 1;
+  int32 age = 2;
+}
+
+message Authors {
+  repeated Author authors = 1;
+}
+
+message EmptyRequest { }
+message EmptyResponse { }
+// google.protobuf.Empty --> import "google/protobuf/empty.proto";
+
+message AuthorQuery {
+  string name = 1;
+}
+
+service AuthorService {
+  rpc GetAll (EmptyRequest) returns (Authors);
+  rpc GetByName (AuthorQuery) returns (Author);
+  rpc Create (Author) returns (EmptyResponse);
+}
+
+// rpc GetItems (ItemsQuery) returns (stream Item)
