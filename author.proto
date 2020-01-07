@@ -2,11 +2,11 @@ syntax = "proto3";
 
 // option csharp_namespace = "dotnet_server";
 
-package AuthorService; // FIXME: Author?
+package AuthorService;
 
 message Author {
   string name = 1;
-  int32 age = 2;
+  int32 id = 2;
 }
 
 message Authors {
@@ -18,13 +18,13 @@ message EmptyResponse { }
 // google.protobuf.Empty --> import "google/protobuf/empty.proto";
 
 message AuthorQuery {
-  string name = 1;
+  string id = 1;
 }
 
 service AuthorService {
-  rpc GetAll (EmptyRequest) returns (Authors);
-  rpc GetByName (AuthorQuery) returns (Author);
-  rpc Create (Author) returns (EmptyResponse);
+  rpc GetAuthors (EmptyRequest) returns (Authors);
+  rpc GetAuthorById (AuthorQuery) returns (Author);
+  rpc CreateAuthor (Author) returns (EmptyResponse);
 }
 
 // rpc GetItems (ItemsQuery) returns (stream Item)

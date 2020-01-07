@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using AuthorService;
 
 namespace dotnet_server
 {
@@ -32,6 +33,7 @@ namespace dotnet_server
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<GreeterService>();
+                endpoints.MapGrpcService<AuthorServerService>();
 
                 endpoints.MapGet("/", async context =>
                 {
